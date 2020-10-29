@@ -45,9 +45,6 @@ NewPing sonar(TRIGGER_PIN,ECHO_PIN,MAX_DISTANCE);
 //Objeto manejador de conexion a wifi
 WiFiClient wifiClient;
 
-//Creamos un objeto de conexionpara la plataforma de IBM IoT 
-PubSubClient client(server, 1883, callback, wifiClient);
-
 //Rutina cuando se manda un mensaje desde la consola de IBM IoT al dispositivo 
 void callback(char* topic, byte* payload, unsigned int payloadLength) {
   Serial.print("Message arrived [");
@@ -67,6 +64,10 @@ void callback(char* topic, byte* payload, unsigned int payloadLength) {
   }
 
 }
+
+
+//Creamos un objeto de conexionpara la plataforma de IBM IoT 
+PubSubClient client(server, 1883, callback, wifiClient);
 
 /* Intervalos de tiempo para enviar datos a la plataforma 
 de IMB IoT */
